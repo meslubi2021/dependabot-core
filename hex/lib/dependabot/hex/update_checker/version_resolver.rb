@@ -1,6 +1,7 @@
 # typed: true
 # frozen_string_literal: true
 
+require "shellwords"
 require "dependabot/hex/version"
 require "dependabot/hex/update_checker"
 require "dependabot/hex/credential_helpers"
@@ -52,7 +53,7 @@ module Dependabot
         def run_elixir_update_checker
           SharedHelpers.run_helper_subprocess(
             env: mix_env,
-            command: "mix run #{elixir_helper_path}",
+            command: Shellwords.join(["mix", "run", elixir_helper_path]),
             function: "get_latest_resolvable_version",
             args: [Dir.pwd, dependency.name, CredentialHelpers.hex_credentials(credentials)],
             stderr_to_stdout: true
