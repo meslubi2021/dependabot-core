@@ -191,6 +191,12 @@ module Dependabot
   class DependencyFileNotResolvable < DependabotError; end
 
   #######################
+  # Config file errors  #
+  #######################
+
+  class ConfigFileFileNotFound < DependabotError; end
+
+  #######################
   # Source level errors #
   #######################
 
