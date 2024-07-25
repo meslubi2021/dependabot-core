@@ -67,6 +67,7 @@ final class UpdateChecker
             ->setUpdate(true)
             ->setInstall(false)
             ->setDevMode(true)
+            ->setInstall(false)
             ->setUpdateAllowTransitiveDependencies(Request::UPDATE_LISTED_WITH_TRANSITIVE_DEPS)
             ->setDumpAutoloader(false)
             ->setPlatformRequirementFilter(PlatformRequirementFilterFactory::fromBoolOrList(false))
