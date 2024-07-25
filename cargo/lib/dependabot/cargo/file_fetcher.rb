@@ -1,6 +1,7 @@
 # typed: false
 # frozen_string_literal: true
 
+require "parseconfig"
 require "pathname"
 require "toml-rb"
 
@@ -186,6 +187,7 @@ module Dependabot
         paths
       end
 
+      # rubocop:disable Metrics/PerceivedComplexity
       def replacement_path_dependency_paths_from_file(file)
         paths = []
 
@@ -193,6 +195,7 @@ module Dependabot
         parsed_file(file).fetch("replace", {}).each do |_, details|
           next unless details.is_a?(Hash)
           next unless details["path"]
+          next if submodule_paths.include?(Pathname.new(details["path"]).cleanpath)
 
           paths << File.join(details["path"], "Cargo.toml")
         end
@@ -204,6 +207,7 @@ module Dependabot
           details.each do |_, dep_details|
             next unless dep_details.is_a?(Hash)
             next unless dep_details["path"]
+            next if submodule_paths.include?(Pathname.new(dep_details["path"]).cleanpath)
 
             paths << File.join(dep_details["path"], "Cargo.toml")
           end
@@ -211,6 +215,7 @@ module Dependabot
 
         paths
       end
+      # rubocop:enable Metrics/PerceivedComplexity
 
       def workspace_dependency_paths_from_file(file)
         if parsed_file(file)["workspace"] &&
@@ -308,6 +313,16 @@ module Dependabot
         raise Dependabot::DependencyFileNotParseable, file.path
       end
 
+      def submodule_paths
+        return @submodule_paths if defined?(@submodule_paths)
+        return [] unless gitmodules
+
+        File.write(".gitmodules", gitmodules.content)
+        @submodule_paths = ParseConfig.new(".gitmodules").params.map do |_, params|
+          Pathname.new(params.fetch("path")).cleanpath
+        end
+      end
+
       def cargo_toml
         @cargo_toml ||= fetch_file_from_host("Cargo.toml")
       end
@@ -328,6 +343,10 @@ module Dependabot
         # Renaming here to simplify finding it later in the code.
         @rust_toolchain ||= fetch_support_file("rust-toolchain.toml")
                             &.tap { |f| f.name = "rust-toolchain" }
+      end
+
+      def gitmodules
+        @gitmodules ||= fetch_file_if_present(".gitmodules")
       end
     end
   end
