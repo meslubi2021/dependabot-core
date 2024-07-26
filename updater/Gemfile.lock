@@ -9,7 +9,7 @@ PATH
   specs:
     dependabot-cargo (0.236.0)
       dependabot-common (= 0.236.0)
-      parseconfig (~> 1.0, < 1.1.0)
+      parseconfig (~> 1.0, < 1.2.0)
 
 PATH
   remote: ../common
@@ -18,7 +18,7 @@ PATH
       aws-sdk-codecommit (~> 1.28)
       aws-sdk-ecr (~> 1.5)
       bundler (>= 1.16, < 3.0.0)
-      commonmarker (>= 0.20.1, < 0.24.0)
+      commonmarker (>= 0.20.1, < 1.2.0)
       docker_registry2 (~> 1.18.0)
       excon (~> 0.96, < 0.105)
       faraday (= 2.7.11)
@@ -55,7 +55,7 @@ PATH
   specs:
     dependabot-git_submodules (0.236.0)
       dependabot-common (= 0.236.0)
-      parseconfig (~> 1.0, < 1.1.0)
+      parseconfig (~> 1.0, < 1.2.0)
 
 PATH
   remote: ../github_actions
@@ -147,7 +147,8 @@ GEM
       aws-eventstream (~> 1, >= 1.0.2)
     base64 (0.1.1)
     citrus (3.0.2)
-    commonmarker (0.23.10)
+    commonmarker (1.1.4)
+      rb_sys (~> 0.9)
     crack (0.4.5)
       rexml
     debug (1.8.0)
@@ -227,7 +228,7 @@ GEM
     octokit (6.1.1)
       faraday (>= 1, < 3)
       sawyer (~> 0.9)
-    opentelemetry-api (1.2.3)
+    opentelemetry-api (1.3.0)
     opentelemetry-common (0.20.0)
       opentelemetry-api (~> 1.0)
     opentelemetry-exporter-otlp (0.26.1)
@@ -237,7 +238,7 @@ GEM
       opentelemetry-common (~> 0.20)
       opentelemetry-sdk (~> 1.2)
       opentelemetry-semantic_conventions
-    opentelemetry-instrumentation-base (0.22.2)
+    opentelemetry-instrumentation-base (0.22.3)
       opentelemetry-api (~> 1.0)
       opentelemetry-registry (~> 0.1)
     opentelemetry-instrumentation-excon (0.21.2)
@@ -248,10 +249,10 @@ GEM
       opentelemetry-api (~> 1.0)
       opentelemetry-common (~> 0.20.0)
       opentelemetry-instrumentation-base (~> 0.22.1)
-    opentelemetry-instrumentation-http (0.23.1)
+    opentelemetry-instrumentation-http (0.23.4)
       opentelemetry-api (~> 1.0)
       opentelemetry-instrumentation-base (~> 0.22.1)
-    opentelemetry-registry (0.3.0)
+    opentelemetry-registry (0.3.1)
       opentelemetry-api (~> 1.1)
     opentelemetry-sdk (1.3.0)
       opentelemetry-api (~> 1.1)
@@ -261,17 +262,18 @@ GEM
     opentelemetry-semantic_conventions (1.10.0)
       opentelemetry-api (~> 1.0)
     parallel (1.23.0)
-    parseconfig (1.0.8)
+    parseconfig (1.1.2)
     parser (3.2.2.4)
       ast (~> 2.4.1)
       racc
     pathname-common_prefix (0.0.1)
-    psych (5.1.1.1)
+    psych (5.1.2)
       stringio
     public_suffix (5.0.3)
     racc (1.8.0)
     rainbow (3.1.1)
     rake (13.1.0)
+    rb_sys (0.9.99)
     regexp_parser (2.8.2)
     reline (0.3.5)
       io-console (~> 0.5)
@@ -325,7 +327,7 @@ GEM
     sentry-raven (3.1.2)
       faraday (>= 1.0)
     sorbet-runtime (0.5.11094)
-    stringio (3.0.8)
+    stringio (3.1.1)
     strscan (3.1.0)
     terminal-table (3.0.2)
       unicode-display_width (>= 1.1.1, < 3)
